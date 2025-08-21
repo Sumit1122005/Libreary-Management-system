@@ -59,20 +59,21 @@ export default function ReportsPage() {
   return (
     <AuthGuard requiredRole="admin">
       <div className="min-h-screen bg-gray-50">
-        <div className="container mx-auto px-4 py-8">
-          {/* Header */}
-          <div className="flex justify-between items-center mb-8">
+        <div className="container mx-auto px-4 py-6 sm:py-8">
+          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-6 sm:mb-8">
             <div>
-              <h1 className="text-3xl font-bold text-gray-900">Library Reports & Analytics</h1>
-              <p className="text-gray-600 mt-2">Comprehensive insights into library operations</p>
+              <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">Library Reports & Analytics</h1>
+              <p className="text-gray-600 mt-1 sm:mt-2 text-sm sm:text-base">
+                Comprehensive insights into library operations
+              </p>
             </div>
 
-            <div className="flex gap-3">
-              <Button variant="outline" onClick={() => handleExportReport("summary")}>
+            <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
+              <Button variant="outline" onClick={() => handleExportReport("summary")} className="w-full sm:w-auto">
                 <Download className="h-4 w-4 mr-2" />
                 Export Summary
               </Button>
-              <Button onClick={() => handleExportReport("detailed")}>
+              <Button onClick={() => handleExportReport("detailed")} className="w-full sm:w-auto">
                 <Download className="h-4 w-4 mr-2" />
                 Export Detailed
               </Button>
@@ -80,51 +81,68 @@ export default function ReportsPage() {
           </div>
 
           {/* Stats Overview */}
-          <div className="mb-8">
+          <div className="mb-6 sm:mb-8">
             <StatsOverview stats={bookStats} />
           </div>
 
-          {/* Report Tabs */}
-          <Tabs defaultValue="circulation" className="space-y-6">
-            <TabsList className="grid w-full grid-cols-4 max-w-2xl">
-              <TabsTrigger value="circulation" className="flex items-center gap-2">
-                <BarChart3 className="h-4 w-4" />
-                Circulation
-              </TabsTrigger>
-              <TabsTrigger value="popular" className="flex items-center gap-2">
-                <TrendingUp className="h-4 w-4" />
-                Popular Books
-              </TabsTrigger>
-              <TabsTrigger value="students" className="flex items-center gap-2">
-                <Users className="h-4 w-4" />
-                Students
-              </TabsTrigger>
-              <TabsTrigger value="financial" className="flex items-center gap-2">
-                <DollarSign className="h-4 w-4" />
-                Financial
-              </TabsTrigger>
-            </TabsList>
+          <Tabs defaultValue="circulation" className="space-y-4 sm:space-y-6">
+            <div className="overflow-x-auto">
+              <TabsList className="grid w-full grid-cols-4 min-w-max sm:min-w-0 sm:max-w-2xl">
+                <TabsTrigger
+                  value="circulation"
+                  className="flex items-center gap-1 sm:gap-2 text-xs sm:text-sm px-2 sm:px-4"
+                >
+                  <BarChart3 className="h-3 w-3 sm:h-4 sm:w-4" />
+                  <span className="hidden sm:inline">Circulation</span>
+                  <span className="sm:hidden">Circ</span>
+                </TabsTrigger>
+                <TabsTrigger
+                  value="popular"
+                  className="flex items-center gap-1 sm:gap-2 text-xs sm:text-sm px-2 sm:px-4"
+                >
+                  <TrendingUp className="h-3 w-3 sm:h-4 sm:w-4" />
+                  <span className="hidden sm:inline">Popular Books</span>
+                  <span className="sm:hidden">Popular</span>
+                </TabsTrigger>
+                <TabsTrigger
+                  value="students"
+                  className="flex items-center gap-1 sm:gap-2 text-xs sm:text-sm px-2 sm:px-4"
+                >
+                  <Users className="h-3 w-3 sm:h-4 sm:w-4" />
+                  <span className="hidden sm:inline">Students</span>
+                  <span className="sm:hidden">Users</span>
+                </TabsTrigger>
+                <TabsTrigger
+                  value="financial"
+                  className="flex items-center gap-1 sm:gap-2 text-xs sm:text-sm px-2 sm:px-4"
+                >
+                  <DollarSign className="h-3 w-3 sm:h-4 sm:w-4" />
+                  <span className="hidden sm:inline">Financial</span>
+                  <span className="sm:hidden">Money</span>
+                </TabsTrigger>
+              </TabsList>
+            </div>
 
-            <TabsContent value="circulation" className="space-y-6">
+            <TabsContent value="circulation" className="space-y-4 sm:space-y-6">
               <CirculationChart data={circulationData} />
 
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 sm:gap-6">
                 <Card>
                   <CardHeader>
                     <CardTitle>Key Insights</CardTitle>
                   </CardHeader>
-                  <CardContent className="space-y-4">
+                  <CardContent className="space-y-3 sm:space-y-4">
                     <div className="flex items-center justify-between p-3 bg-green-50 rounded-lg">
                       <span className="text-sm font-medium">Peak Month</span>
-                      <span className="text-green-700 font-bold">June (356 issues)</span>
+                      <span className="text-green-700 font-bold text-sm sm:text-base">June (356 issues)</span>
                     </div>
                     <div className="flex items-center justify-between p-3 bg-blue-50 rounded-lg">
                       <span className="text-sm font-medium">Average Monthly Issues</span>
-                      <span className="text-blue-700 font-bold">306 books</span>
+                      <span className="text-blue-700 font-bold text-sm sm:text-base">306 books</span>
                     </div>
                     <div className="flex items-center justify-between p-3 bg-orange-50 rounded-lg">
                       <span className="text-sm font-medium">Return Rate</span>
-                      <span className="text-orange-700 font-bold">94.2%</span>
+                      <span className="text-orange-700 font-bold text-sm sm:text-base">94.2%</span>
                     </div>
                   </CardContent>
                 </Card>
@@ -160,43 +178,43 @@ export default function ReportsPage() {
             </TabsContent>
 
             <TabsContent value="financial">
-              <div className="space-y-6">
+              <div className="space-y-4 sm:space-y-6">
                 <FinancialChart data={financialData} />
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
                   <Card>
                     <CardHeader>
-                      <CardTitle className="text-lg">Total Revenue</CardTitle>
+                      <CardTitle className="text-base sm:text-lg">Total Revenue</CardTitle>
                     </CardHeader>
                     <CardContent>
-                      <div className="text-3xl font-bold text-green-600">
+                      <div className="text-2xl sm:text-3xl font-bold text-green-600">
                         ${financialData.reduce((sum, item) => sum + item.revenue, 0)}
                       </div>
-                      <p className="text-sm text-gray-600">Last 6 months</p>
+                      <p className="text-xs sm:text-sm text-gray-600">Last 6 months</p>
                     </CardContent>
                   </Card>
 
                   <Card>
                     <CardHeader>
-                      <CardTitle className="text-lg">Fines Collected</CardTitle>
+                      <CardTitle className="text-base sm:text-lg">Fines Collected</CardTitle>
                     </CardHeader>
                     <CardContent>
-                      <div className="text-3xl font-bold text-orange-600">
+                      <div className="text-2xl sm:text-3xl font-bold text-orange-600">
                         ${financialData.reduce((sum, item) => sum + item.finesCollected, 0)}
                       </div>
-                      <p className="text-sm text-gray-600">Last 6 months</p>
+                      <p className="text-xs sm:text-sm text-gray-600">Last 6 months</p>
                     </CardContent>
                   </Card>
 
                   <Card>
                     <CardHeader>
-                      <CardTitle className="text-lg">New Members</CardTitle>
+                      <CardTitle className="text-base sm:text-lg">New Members</CardTitle>
                     </CardHeader>
                     <CardContent>
-                      <div className="text-3xl font-bold text-blue-600">
+                      <div className="text-2xl sm:text-3xl font-bold text-blue-600">
                         {financialData.reduce((sum, item) => sum + item.newMemberships, 0)}
                       </div>
-                      <p className="text-sm text-gray-600">Last 6 months</p>
+                      <p className="text-xs sm:text-sm text-gray-600">Last 6 months</p>
                     </CardContent>
                   </Card>
                 </div>

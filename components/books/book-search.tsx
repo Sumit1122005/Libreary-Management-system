@@ -28,22 +28,22 @@ export function BookSearch({ onSearch, categories }: BookSearchProps) {
   }
 
   return (
-    <div className="flex flex-col sm:flex-row gap-4 p-4 bg-white rounded-lg shadow-sm border">
-      <div className="flex-1">
+    <div className="flex flex-col gap-3 sm:flex-row sm:gap-4 p-4 sm:p-6 bg-white rounded-lg shadow-sm border">
+      <div className="flex-1 min-w-0">
         <div className="relative">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
           <Input
-            placeholder="Search by title, author, ISBN, or category..."
+            placeholder="Search by title, author, ISBN..."
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             onKeyPress={handleKeyPress}
-            className="pl-10"
+            className="pl-10 h-10 sm:h-11 text-base"
           />
         </div>
       </div>
 
       <Select value={category} onValueChange={setCategory}>
-        <SelectTrigger className="w-full sm:w-48">
+        <SelectTrigger className="w-full sm:w-48 h-10 sm:h-11">
           <SelectValue placeholder="Select category" />
         </SelectTrigger>
         <SelectContent>
@@ -56,7 +56,7 @@ export function BookSearch({ onSearch, categories }: BookSearchProps) {
         </SelectContent>
       </Select>
 
-      <Button onClick={handleSearch} className="w-full sm:w-auto">
+      <Button onClick={handleSearch} className="w-full sm:w-auto h-10 sm:h-11 text-base">
         Search
       </Button>
     </div>

@@ -44,26 +44,28 @@ export default function BooksPage() {
   return (
     <AuthGuard>
       <div className="min-h-screen bg-gray-50">
-        <div className="container mx-auto px-4 py-8">
-          <div className="flex justify-between items-center mb-8">
+        <div className="container mx-auto px-4 py-6 sm:py-8">
+          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-6 sm:mb-8">
             <div>
-              <h1 className="text-3xl font-bold text-gray-900">Book Catalog</h1>
-              <p className="text-gray-600 mt-2">Search and discover books in our library</p>
+              <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">Book Catalog</h1>
+              <p className="text-gray-600 mt-1 sm:mt-2 text-sm sm:text-base">
+                Search and discover books in our library
+              </p>
             </div>
 
             {canManageBooks && (
-              <Button>
+              <Button className="w-full sm:w-auto">
                 <Plus className="h-4 w-4 mr-2" />
                 Add New Book
               </Button>
             )}
           </div>
 
-          <div className="mb-8">
+          <div className="mb-6 sm:mb-8">
             <BookSearch onSearch={handleSearch} categories={getCategories()} />
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
             {books.map((book) => (
               <BookCard
                 key={book.id}
